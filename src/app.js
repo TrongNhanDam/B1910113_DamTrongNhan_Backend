@@ -5,12 +5,17 @@ import cors from "cors";
 import initContactRouter from "./app/router/contact.router";
 import apiError from "./app/api-error";
 
+import bodyParser from "body-parser";
+
 const app = express();
 
 require("dotenv").config();
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 // Khoi tao contact Router
 initContactRouter(app);
